@@ -5,11 +5,11 @@
       <h1 v-if="userInfo">{{ userInfo.member_nm }}</h1> 
     -->
     <h2 v-else>로그인이 필요합니다</h2>
-    <button v-if="this.userInfo" type="button" @click="onLogout">로그아웃</button>
-    <button v-else type="button" @click="onLogin">로그인</button>
-    <br>
-    <br>
-    <br>
+    <div v-if="this.userInfo">
+      <button type="button" @click="onLogout">로그아웃</button><br><br>
+      <button type="button" @click="onLoginTodo">할일목록보러가기</button>
+    </div>
+    <button v-else type="button" @click="onLogin">로그인</button><br><br><br><br>
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
@@ -30,11 +30,13 @@ export default {
   },
   created() {
     this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(localStorage);
   },
   methods: {
     onLogin() {
       this.$router.push("/page-4");
+    },
+    onLoginTodo() {
+      this.$router.push("/page-5");
     },
     onLogout() {
       localStorage.removeItem("userInfo");

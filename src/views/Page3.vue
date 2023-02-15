@@ -29,13 +29,12 @@ export default {
     onJoin() {
       this.$axios.post('http://103.124.103.199:8080/api/rest/join-member', this.userInfo)
 			.then(response => {
-				// console.log(response);
         if (response.status === 200 ) { // or 업무적으로 성공 코드를 따로 정함
 					alert('회원가입이 되었습니다.');
 					this.$router.push('/')
 				} else { 
 					alert(response.statusText); 
-				}					
+				}	
       })
 			.catch(error => {
 				if (error) {
